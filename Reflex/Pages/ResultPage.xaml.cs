@@ -1,3 +1,5 @@
+using Reflex.Services;
+
 namespace Reflex.Pages;
 
 public partial class ResultPage : ContentPage
@@ -7,21 +9,65 @@ public partial class ResultPage : ContentPage
         InitializeComponent();
     }
 
-    protected override void OnAppearing()
+    protected override async void OnAppearing()
     {
         base.OnAppearing();
 
-        // Placeholder values — replaced by real scoring in Phase 3/4
-        ScoreLabel.Text      = "72";
-        BandLabel.Text       = "Good";
-        DiagnosisLabel.Text  = "All systems within normal range.";
+        // ── Compute real scores from session data ──────────────────────
+        var score = ScoringService.Compute();
+        var color = ScoringService.GetBandColor(score.Composite);
 
-        StabilityBar.Progress = 0.80; StabilityScore.Text = "80";
-        ReactionBar.Progress  = 0.75; ReactionScore.Text  = "75";
-        PrecisionBar.Progress = 0.70; PrecisionScore.Text = "70";
-        DualTaskBar.Progress  = 0.68; DualTaskScore.Text  = "68";
-        CardiacBar.Progress   = 0.60; CardiacScore.Text   = "60";
+        // ── Composite header ───────────────────────────────────────────
+        ScoreLabel.Text      = score.Composite.ToString();
+        ScoreLabel.TextColor = color;
+        BandLabel.Text       = ScoringService.GetBand(score.Composite);
+        BandLabel.TextColor  = color;
+        DiagnosisLabel.Text  = ScoringService.GetDiagnosis(score.Composite);
+
+        // ── Dimension score labels ─────────────────────────────────────
+        StabilityScore.Text = score.Stability.ToString();
+        ReactionScore.Text  = score.Reaction.ToString();
+        PrecisionScore.Text = score.Precision.ToString();
+        DualTaskScore.Text  = score.DualTask.ToString();
+        CardiacScore.Text   = score.Cardiac.ToString();
+
+        // ── Animate bars from 0 → target ──────────────────────────────
+        await AnimateBarsAsync(score);
+
+        // ── Persist to database (non-blocking) ────────────────────────
+        _ = SaveSessionAsync(score);
     }
+
+    // ── Bar animation ──────────────────────────────────────────────────────
+
+    private Task AnimateBarsAsync(SessionScore score)
+    {
+        const uint duration = 700;
+        return Task.WhenAll(
+            StabilityBar.ProgressTo(score.Stability / 100.0, duration, Easing.CubicOut),
+            ReactionBar .ProgressTo(score.Reaction  / 100.0, duration, Easing.CubicOut),
+            PrecisionBar.ProgressTo(score.Precision / 100.0, duration, Easing.CubicOut),
+            DualTaskBar .ProgressTo(score.DualTask  / 100.0, duration, Easing.CubicOut),
+            CardiacBar  .ProgressTo(score.Cardiac   / 100.0, duration, Easing.CubicOut)
+        );
+    }
+
+    // ── Database save ──────────────────────────────────────────────────────
+
+    private static async Task SaveSessionAsync(SessionScore score)
+    {
+        try
+        {
+            var (session, results) = ScoringService.BuildDbObjects(score);
+            await App.Database.SaveSessionAsync(session, results);
+        }
+        catch
+        {
+            // Don't crash the result screen if the DB write fails
+        }
+    }
+
+    // ── Button handlers ────────────────────────────────────────────────────
 
     private async void OnTestAgainClicked(object sender, EventArgs e)
         => await Shell.Current.Navigation.PopToRootAsync();
