@@ -5,35 +5,41 @@
              BackgroundColor="#050508"
              Shell.NavBarIsVisible="False">
 
-    <Grid Padding="40" RowDefinitions="Auto,*,Auto">
+    <Grid RowDefinitions="Auto,*,Auto">
 
-        <Label Grid.Row="0"
-               Text="Test 2 of 5  ·  Strike"
-               FontSize="12"
-               TextColor="#444455"
-               HorizontalOptions="Center" />
-
-        <VerticalStackLayout Grid.Row="1" VerticalOptions="Center" Spacing="20">
-            <Label Text="Tap the circle when it appears."
-                   FontSize="20"
-                   TextColor="#888899"
-                   HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center" />
-            <Label x:Name="TrialLabel"
-                   Text="Trial 0 / 12"
-                   FontSize="14"
-                   TextColor="#333355"
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Padding="40,32,40,0" Spacing="4">
+            <Label Text="Test 2 of 5  ·  Strike"
+                   FontSize="12"
+                   TextColor="#444455"
                    HorizontalOptions="Center" />
-            <!-- Flash target placeholder -->
-            <Ellipse x:Name="StrikeTarget"
-                     IsVisible="False"
-                     Fill="#00FF88"
-                     WidthRequest="80"
-                     HeightRequest="80"
-                     HorizontalOptions="Center" />
+            <Label x:Name="TrialLabel"
+                   Text="Get ready…"
+                   FontSize="16"
+                   TextColor="#555566"
+                   HorizontalOptions="Center"
+                   Margin="0,8,0,0" />
         </VerticalStackLayout>
 
-        <Grid Grid.Row="2" ColumnDefinitions="*,16,*">
+        <!-- Random-position tap target -->
+        <AbsoluteLayout x:Name="TargetArea" Grid.Row="1">
+            <Frame x:Name="StrikeTarget"
+                   IsVisible="False"
+                   BackgroundColor="#00FF88"
+                   WidthRequest="80"
+                   HeightRequest="80"
+                   CornerRadius="40"
+                   HasShadow="False"
+                   Padding="0"
+                   BorderColor="Transparent">
+                <Frame.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnTargetTapped" />
+                </Frame.GestureRecognizers>
+            </Frame>
+        </AbsoluteLayout>
+
+        <!-- Cancel / Skip (skip for dev use) -->
+        <Grid Grid.Row="2" Padding="40,0,40,40" ColumnDefinitions="*,16,*">
             <Button Grid.Column="0"
                     Text="Cancel"
                     BackgroundColor="#1A1A2E"
@@ -42,13 +48,12 @@
                     CornerRadius="10"
                     Clicked="OnCancelClicked" />
             <Button Grid.Column="2"
-                    Text="Next →"
-                    BackgroundColor="#00E5FF"
-                    TextColor="#0A0A12"
-                    FontAttributes="Bold"
+                    Text="Skip →"
+                    BackgroundColor="#1A1A2E"
+                    TextColor="#333355"
                     HeightRequest="52"
                     CornerRadius="10"
-                    Clicked="OnNextClicked" />
+                    Clicked="OnSkipClicked" />
         </Grid>
 
     </Grid>
