@@ -58,7 +58,7 @@ public static class ScoringService
         // ── 4. Dual-Task  (25 %) ──────────────────────────────────────────
         // TrackingError: pixel mean dist → normalised by /180 (best 0.20, worst 1.00)
         // 999 → user never touched the screen
-        double dualTask = SessionData.TrackingError < 990
+        double dualTask = SessionData.TrackingError > 0 && SessionData.TrackingError < 990
             ? Norm(SessionData.TrackingError / 180.0, 0.20, 1.00)
             : 50.0;
 

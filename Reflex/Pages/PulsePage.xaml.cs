@@ -100,9 +100,10 @@ public partial class PulsePage : ContentPage
 
     private void SaveResult()
     {
-        // Fall back to population-typical values if signal was never acquired
-        SessionData.HeartRate = _processor.Bpm     > 0 ? _processor.Bpm     : 70;
-        SessionData.HrvRmssd  = _processor.HrvRmssd > 0 ? _processor.HrvRmssd : 40;
+        // Store 0 if the signal was never acquired — the scoring engine
+        // treats 0 as "not measured" and substitutes a neutral 50 score.
+        SessionData.HeartRate = _processor.Bpm      > 0 ? _processor.Bpm      : 0;
+        SessionData.HrvRmssd  = _processor.HrvRmssd > 0 ? _processor.HrvRmssd : 0;
     }
 
     // ── Button handlers ────────────────────────────────────────────────────
