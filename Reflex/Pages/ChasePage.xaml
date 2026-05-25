@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Reflex.Pages.ChasePage"
+             BackgroundColor="#0A0A12"
+             Shell.NavBarIsVisible="False">
+
+    <Grid Padding="40" RowDefinitions="Auto,*,Auto">
+
+        <VerticalStackLayout Grid.Row="0" Spacing="4">
+            <Label Text="Test 4 of 5  ·  Chase"
+                   FontSize="12"
+                   TextColor="#444455"
+                   HorizontalOptions="Center" />
+            <Label Text="Keep your finger on the dot."
+                   FontSize="26"
+                   FontAttributes="Bold"
+                   TextColor="#FFFFFF"
+                   HorizontalOptions="Center"
+                   Margin="0,8,0,0" />
+            <Label Text="Hold the phone steady at the same time."
+                   FontSize="13"
+                   TextColor="#888899"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+        </VerticalStackLayout>
+
+        <Frame Grid.Row="1"
+               BackgroundColor="#050508"
+               BorderColor="#1A1A2E"
+               CornerRadius="16"
+               Margin="0,24">
+            <VerticalStackLayout VerticalOptions="Center" Spacing="12">
+                <Ellipse Fill="#00E5FF"
+                         WidthRequest="24"
+                         HeightRequest="24"
+                         HorizontalOptions="Center" />
+                <Label x:Name="TimerLabel"
+                       Text="30"
+                       FontSize="40"
+                       FontAttributes="Bold"
+                       TextColor="#00E5FF"
+                       HorizontalOptions="Center" />
+                <Label Text="Lissajous path · dual-task"
+                       FontSize="11"
+                       TextColor="#333355"
+                       HorizontalOptions="Center" />
+            </VerticalStackLayout>
+        </Frame>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*,16,*">
+            <Button Grid.Column="0"
+                    Text="Cancel"
+                    BackgroundColor="#1A1A2E"
+                    TextColor="#555566"
+                    HeightRequest="52"
+                    CornerRadius="10"
+                    Clicked="OnCancelClicked" />
+            <Button Grid.Column="2"
+                    Text="Next →"
+                    BackgroundColor="#00E5FF"
+                    TextColor="#0A0A12"
+                    FontAttributes="Bold"
+                    HeightRequest="52"
+                    CornerRadius="10"
+                    Clicked="OnNextClicked" />
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

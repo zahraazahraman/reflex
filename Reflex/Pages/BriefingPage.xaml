@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Reflex.Pages.BriefingPage"
+             BackgroundColor="#0A0A12"
+             Shell.NavBarIsVisible="False">
+
+    <Grid Padding="40" RowDefinitions="*,Auto,Auto">
+
+        <VerticalStackLayout Grid.Row="0" VerticalOptions="Center" Spacing="28">
+
+            <Label Text="5 tests · 3 minutes"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#FFFFFF"
+                   HorizontalOptions="Center" />
+
+            <Label Text="No right or wrong answers.&#x0a;Just hold still, tap, and breathe."
+                   FontSize="16"
+                   TextColor="#888899"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   LineHeight="1.5" />
+
+            <VerticalStackLayout Spacing="10" Margin="0,12,0,0">
+                <Label Text="①  Stillness   ·  30 s"   TextColor="#AAAACC" FontSize="14" HorizontalOptions="Center" />
+                <Label Text="②  Strike      ·  ~90 s"  TextColor="#AAAACC" FontSize="14" HorizontalOptions="Center" />
+                <Label Text="③  Aim         ·  ~60 s"  TextColor="#AAAACC" FontSize="14" HorizontalOptions="Center" />
+                <Label Text="④  Chase       ·  30 s"   TextColor="#AAAACC" FontSize="14" HorizontalOptions="Center" />
+                <Label Text="⑤  Pulse       ·  20 s"   TextColor="#AAAACC" FontSize="14" HorizontalOptions="Center" />
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+
+        <Label x:Name="CountdownLabel"
+               Grid.Row="1"
+               Text="Starting in 10…"
+               FontSize="13"
+               TextColor="#444455"
+               HorizontalOptions="Center"
+               Margin="0,0,0,12" />
+
+        <Button Grid.Row="2"
+                Text="Skip"
+                BackgroundColor="#1A1A2E"
+                TextColor="#888899"
+                FontSize="15"
+                HeightRequest="50"
+                CornerRadius="10"
+                Clicked="OnSkipClicked" />
+
+    </Grid>
+
+</ContentPage>

@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Reflex.Pages.ResultPage"
+             BackgroundColor="#0A0A12"
+             Shell.NavBarIsVisible="False">
+
+    <ScrollView>
+        <VerticalStackLayout Padding="40,50,40,40" Spacing="0">
+
+            <!-- Composite score -->
+            <Label x:Name="ScoreLabel"
+                   Text="--"
+                   FontSize="96"
+                   FontAttributes="Bold"
+                   TextColor="#00E5FF"
+                   HorizontalOptions="Center" />
+
+            <Label x:Name="BandLabel"
+                   Text="–"
+                   FontSize="20"
+                   TextColor="#888899"
+                   HorizontalOptions="Center"
+                   Margin="0,0,0,8" />
+
+            <Label x:Name="DiagnosisLabel"
+                   Text="Awaiting result…"
+                   FontSize="14"
+                   TextColor="#555566"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,0,0,36" />
+
+            <!-- Dimension bars -->
+            <VerticalStackLayout Spacing="16" Margin="0,0,0,40">
+
+                <VerticalStackLayout Spacing="5">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Stability" TextColor="#AAAACC" FontSize="13" />
+                        <Label x:Name="StabilityScore" Grid.Column="1" Text="--" TextColor="#AAAACC" FontSize="13" />
+                    </Grid>
+                    <ProgressBar x:Name="StabilityBar" Progress="0" ProgressColor="#00E5FF" BackgroundColor="#1A1A2E" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Reaction Time" TextColor="#AAAACC" FontSize="13" />
+                        <Label x:Name="ReactionScore" Grid.Column="1" Text="--" TextColor="#AAAACC" FontSize="13" />
+                    </Grid>
+                    <ProgressBar x:Name="ReactionBar" Progress="0" ProgressColor="#00E5FF" BackgroundColor="#1A1A2E" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Precision" TextColor="#AAAACC" FontSize="13" />
+                        <Label x:Name="PrecisionScore" Grid.Column="1" Text="--" TextColor="#AAAACC" FontSize="13" />
+                    </Grid>
+                    <ProgressBar x:Name="PrecisionBar" Progress="0" ProgressColor="#00E5FF" BackgroundColor="#1A1A2E" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Dual-Task" TextColor="#AAAACC" FontSize="13" />
+                        <Label x:Name="DualTaskScore" Grid.Column="1" Text="--" TextColor="#AAAACC" FontSize="13" />
+                    </Grid>
+                    <ProgressBar x:Name="DualTaskBar" Progress="0" ProgressColor="#00E5FF" BackgroundColor="#1A1A2E" />
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="5">
+                    <Grid ColumnDefinitions="*,Auto">
+                        <Label Text="Cardiac" TextColor="#AAAACC" FontSize="13" />
+                        <Label x:Name="CardiacScore" Grid.Column="1" Text="--" TextColor="#AAAACC" FontSize="13" />
+                    </Grid>
+                    <ProgressBar x:Name="CardiacBar" Progress="0" ProgressColor="#00E5FF" BackgroundColor="#1A1A2E" />
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+            <!-- Action buttons -->
+            <Button Text="Test Again"
+                    BackgroundColor="#00E5FF"
+                    TextColor="#0A0A12"
+                    FontAttributes="Bold"
+                    FontSize="16"
+                    HeightRequest="54"
+                    CornerRadius="12"
+                    Margin="0,0,0,12"
+                    Clicked="OnTestAgainClicked" />
+
+            <Button Text="See History"
+                    BackgroundColor="#1A1A2E"
+                    TextColor="#888899"
+                    FontSize="15"
+                    HeightRequest="50"
+                    CornerRadius="12"
+                    Clicked="OnHistoryClicked" />
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

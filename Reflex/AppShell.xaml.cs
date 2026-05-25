@@ -1,10 +1,20 @@
-﻿namespace Reflex
+using Reflex.Pages;
+
+namespace Reflex;
+
+public partial class AppShell : Shell
 {
-    public partial class AppShell : Shell
+    public AppShell()
     {
-        public AppShell()
-        {
-            InitializeComponent();
-        }
+        InitializeComponent();
+
+        Routing.RegisterRoute(nameof(BriefingPage),   typeof(BriefingPage));
+        Routing.RegisterRoute(nameof(StillnessPage),  typeof(StillnessPage));
+        Routing.RegisterRoute(nameof(StrikePage),     typeof(StrikePage));
+        Routing.RegisterRoute(nameof(AimPage),        typeof(AimPage));
+        Routing.RegisterRoute(nameof(ChasePage),      typeof(ChasePage));
+        Routing.RegisterRoute(nameof(PulsePage),      typeof(PulsePage));
+        Routing.RegisterRoute(nameof(ProcessingPage), typeof(ProcessingPage));
+        Routing.RegisterRoute(nameof(ResultPage),     typeof(ResultPage));
     }
 }

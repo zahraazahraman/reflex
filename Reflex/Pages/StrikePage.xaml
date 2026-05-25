@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Reflex.Pages.StrikePage"
+             BackgroundColor="#050508"
+             Shell.NavBarIsVisible="False">
+
+    <Grid Padding="40" RowDefinitions="Auto,*,Auto">
+
+        <Label Grid.Row="0"
+               Text="Test 2 of 5  ·  Strike"
+               FontSize="12"
+               TextColor="#444455"
+               HorizontalOptions="Center" />
+
+        <VerticalStackLayout Grid.Row="1" VerticalOptions="Center" Spacing="20">
+            <Label Text="Tap the circle when it appears."
+                   FontSize="20"
+                   TextColor="#888899"
+                   HorizontalOptions="Center"
+                   HorizontalTextAlignment="Center" />
+            <Label x:Name="TrialLabel"
+                   Text="Trial 0 / 12"
+                   FontSize="14"
+                   TextColor="#333355"
+                   HorizontalOptions="Center" />
+            <!-- Flash target placeholder -->
+            <Ellipse x:Name="StrikeTarget"
+                     IsVisible="False"
+                     Fill="#00FF88"
+                     WidthRequest="80"
+                     HeightRequest="80"
+                     HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <Grid Grid.Row="2" ColumnDefinitions="*,16,*">
+            <Button Grid.Column="0"
+                    Text="Cancel"
+                    BackgroundColor="#1A1A2E"
+                    TextColor="#555566"
+                    HeightRequest="52"
+                    CornerRadius="10"
+                    Clicked="OnCancelClicked" />
+            <Button Grid.Column="2"
+                    Text="Next →"
+                    BackgroundColor="#00E5FF"
+                    TextColor="#0A0A12"
+                    FontAttributes="Bold"
+                    HeightRequest="52"
+                    CornerRadius="10"
+                    Clicked="OnNextClicked" />
+        </Grid>
+
+    </Grid>
+
+</ContentPage>

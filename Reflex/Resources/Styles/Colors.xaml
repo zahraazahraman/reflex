@@ -42,4 +42,17 @@
     <SolidColorBrush x:Key="Gray600Brush" Color="{StaticResource Gray600}"/>
     <SolidColorBrush x:Key="Gray900Brush" Color="{StaticResource Gray900}"/>
     <SolidColorBrush x:Key="Gray950Brush" Color="{StaticResource Gray950}"/>
+
+    <!-- Reflex app colors -->
+    <Color x:Key="ReflexBg">#0A0A12</Color>
+    <Color x:Key="ReflexBgDeep">#050508</Color>
+    <Color x:Key="ReflexBgCard">#0D0D1A</Color>
+    <Color x:Key="ReflexBgButton">#1A1A2E</Color>
+    <Color x:Key="ReflexAccent">#00E5FF</Color>
+    <Color x:Key="ReflexGreen">#00FF88</Color>
+    <Color x:Key="ReflexRed">#FF3D3D</Color>
+    <Color x:Key="ReflexAmber">#FFB300</Color>
+    <Color x:Key="ReflexTextMuted">#888899</Color>
+    <Color x:Key="ReflexTextDim">#444455</Color>
+    <Color x:Key="ReflexTextFaint">#333355</Color>
 </ResourceDictionary>

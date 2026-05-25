@@ -3,13 +3,14 @@
     x:Class="Reflex.AppShell"
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-    xmlns:local="clr-namespace:Reflex"
+    xmlns:pages="clr-namespace:Reflex.Pages"
     Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="False"
     Title="Reflex">
 
     <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+        Title="Welcome"
+        ContentTemplate="{DataTemplate pages:WelcomePage}"
+        Route="WelcomePage" />
 
 </Shell>
