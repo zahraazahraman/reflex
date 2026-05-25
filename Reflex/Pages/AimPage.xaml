@@ -5,44 +5,52 @@
              BackgroundColor="#0A0A12"
              Shell.NavBarIsVisible="False">
 
-    <Grid Padding="40" RowDefinitions="Auto,*,Auto">
+    <Grid RowDefinitions="Auto,*,Auto">
 
-        <VerticalStackLayout Grid.Row="0" Spacing="4">
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Padding="40,32,40,0" Spacing="4">
             <Label Text="Test 3 of 5  ·  Aim"
                    FontSize="12"
                    TextColor="#444455"
                    HorizontalOptions="Center" />
-            <Label Text="Tap the center of each circle."
-                   FontSize="26"
-                   FontAttributes="Bold"
-                   TextColor="#FFFFFF"
+            <Label x:Name="TargetLabel"
+                   Text="Get ready…"
+                   FontSize="16"
+                   TextColor="#555566"
                    HorizontalOptions="Center"
-                   Margin="0,8,0,0" />
-            <Label Text="Circles decrease in size. You have 3 seconds each."
-                   FontSize="13"
-                   TextColor="#888899"
-                   HorizontalOptions="Center"
-                   HorizontalTextAlignment="Center" />
+                   Margin="0,6,0,0" />
+            <!-- Per-target countdown bar -->
+            <ProgressBar x:Name="TimeBar"
+                         Progress="1"
+                         ProgressColor="#00E5FF"
+                         BackgroundColor="#1A1A2E"
+                         HeightRequest="3"
+                         Margin="0,8,0,0" />
         </VerticalStackLayout>
 
-        <Frame Grid.Row="1"
-               BackgroundColor="#0D0D1A"
-               BorderColor="#1A1A2E"
-               CornerRadius="16"
-               Margin="0,24">
-            <VerticalStackLayout VerticalOptions="Center" Spacing="12">
-                <Ellipse Fill="#1A3A4A"
-                         WidthRequest="80"
-                         HeightRequest="80"
-                         HorizontalOptions="Center" />
-                <Label Text="Target 0 / 20"
-                       FontSize="12"
-                       TextColor="#333355"
-                       HorizontalOptions="Center" />
-            </VerticalStackLayout>
-        </Frame>
+        <!-- Target area: visual circle + transparent full-area tap catcher -->
+        <AbsoluteLayout x:Name="TargetArea" Grid.Row="1">
 
-        <Grid Grid.Row="2" ColumnDefinitions="*,16,*">
+            <!-- Visual circle (position set in code-behind) -->
+            <BoxView x:Name="AimCircle"
+                     IsVisible="False"
+                     Color="#00E5FF"
+                     CornerRadius="999" />
+
+            <!-- Transparent overlay — captures every tap in the area -->
+            <BoxView Color="Transparent"
+                     AbsoluteLayout.LayoutBounds="0,0,1,1"
+                     AbsoluteLayout.LayoutFlags="All"
+                     InputTransparent="False">
+                <BoxView.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnAreaTapped" />
+                </BoxView.GestureRecognizers>
+            </BoxView>
+
+        </AbsoluteLayout>
+
+        <!-- Cancel / Skip -->
+        <Grid Grid.Row="2" Padding="40,0,40,40" ColumnDefinitions="*,16,*">
             <Button Grid.Column="0"
                     Text="Cancel"
                     BackgroundColor="#1A1A2E"
@@ -51,13 +59,12 @@
                     CornerRadius="10"
                     Clicked="OnCancelClicked" />
             <Button Grid.Column="2"
-                    Text="Next →"
-                    BackgroundColor="#00E5FF"
-                    TextColor="#0A0A12"
-                    FontAttributes="Bold"
+                    Text="Skip →"
+                    BackgroundColor="#1A1A2E"
+                    TextColor="#333355"
                     HeightRequest="52"
                     CornerRadius="10"
-                    Clicked="OnNextClicked" />
+                    Clicked="OnSkipClicked" />
         </Grid>
 
     </Grid>
