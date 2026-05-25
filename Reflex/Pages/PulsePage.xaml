@@ -7,6 +7,7 @@
 
     <Grid Padding="40" RowDefinitions="Auto,*,Auto">
 
+        <!-- Header -->
         <VerticalStackLayout Grid.Row="0" Spacing="4">
             <Label Text="Test 5 of 5  ·  Pulse"
                    FontSize="12"
@@ -25,44 +26,57 @@
                    HorizontalTextAlignment="Center" />
         </VerticalStackLayout>
 
-        <VerticalStackLayout Grid.Row="1" VerticalOptions="Center" Spacing="20">
+        <!-- Central readout -->
+        <VerticalStackLayout Grid.Row="1" VerticalOptions="Center" Spacing="18">
 
-            <!-- Camera feed placeholder -->
-            <Frame BackgroundColor="#1A0A0A"
+            <!-- Pulsing heart circle -->
+            <Frame x:Name="HeartCircle"
+                   BackgroundColor="#1A0A0A"
                    BorderColor="#3A1A1A"
                    CornerRadius="80"
                    WidthRequest="160"
                    HeightRequest="160"
                    HorizontalOptions="Center"
                    Padding="0">
-                <Label Text="●"
-                       FontSize="52"
+                <Label Text="♥"
+                       FontSize="56"
                        TextColor="#FF3D3D"
                        HorizontalOptions="Center"
                        VerticalOptions="Center" />
             </Frame>
 
+            <!-- Status line: "Detecting…" / "Measuring" -->
+            <Label x:Name="StatusLabel"
+                   Text="Detecting…"
+                   FontSize="13"
+                   TextColor="#555566"
+                   HorizontalOptions="Center" />
+
+            <!-- Live BPM -->
             <Label x:Name="BpmLabel"
                    Text="-- BPM"
-                   FontSize="36"
+                   FontSize="40"
                    FontAttributes="Bold"
                    TextColor="#FF6B6B"
                    HorizontalOptions="Center" />
 
+            <!-- HRV -->
             <Label x:Name="HrvLabel"
                    Text="HRV: -- ms"
                    FontSize="14"
                    TextColor="#555566"
                    HorizontalOptions="Center" />
 
+            <!-- Countdown -->
             <Label x:Name="TimerLabel"
-                   Text="20"
+                   Text="30"
                    FontSize="22"
                    TextColor="#00E5FF"
                    HorizontalOptions="Center" />
 
         </VerticalStackLayout>
 
+        <!-- Cancel / Next (Skip) -->
         <Grid Grid.Row="2" ColumnDefinitions="*,16,*">
             <Button Grid.Column="0"
                     Text="Cancel"
@@ -72,13 +86,12 @@
                     CornerRadius="10"
                     Clicked="OnCancelClicked" />
             <Button Grid.Column="2"
-                    Text="Next →"
-                    BackgroundColor="#00E5FF"
-                    TextColor="#0A0A12"
-                    FontAttributes="Bold"
+                    Text="Skip →"
+                    BackgroundColor="#1A1A2E"
+                    TextColor="#333355"
                     HeightRequest="52"
                     CornerRadius="10"
-                    Clicked="OnNextClicked" />
+                    Clicked="OnSkipClicked" />
         </Grid>
 
     </Grid>
