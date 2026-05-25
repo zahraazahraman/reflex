@@ -73,5 +73,5 @@ public partial class ResultPage : ContentPage
         => await Shell.Current.Navigation.PopToRootAsync();
 
     private async void OnHistoryClicked(object sender, EventArgs e)
-        => await DisplayAlert("Coming soon", "History view will be added in the next phase.", "OK");
+        => await Shell.Current.GoToAsync(nameof(HistoryPage));
 }

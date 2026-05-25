@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Reflex.Pages.HistoryPage"
+             BackgroundColor="#0A0A12"
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions="Auto,*,Auto" Padding="40,48,40,40">
+
+        <!-- Header -->
+        <VerticalStackLayout Grid.Row="0" Spacing="4" Margin="0,0,0,28">
+            <Label Text="Session History"
+                   FontSize="28"
+                   FontAttributes="Bold"
+                   TextColor="#FFFFFF"
+                   HorizontalOptions="Center" />
+            <Label Text="Last 7 sessions"
+                   FontSize="13"
+                   TextColor="#444455"
+                   HorizontalOptions="Center" />
+        </VerticalStackLayout>
+
+        <!-- Session rows (populated in code-behind) -->
+        <ScrollView Grid.Row="1">
+            <VerticalStackLayout x:Name="SessionRows" Spacing="0" />
+        </ScrollView>
+
+        <!-- Close -->
+        <Button Grid.Row="2"
+                Text="Close"
+                BackgroundColor="#1A1A2E"
+                TextColor="#888899"
+                FontSize="15"
+                HeightRequest="52"
+                CornerRadius="12"
+                Margin="0,24,0,0"
+                Clicked="OnCloseClicked" />
+
+    </Grid>
+
+</ContentPage>
